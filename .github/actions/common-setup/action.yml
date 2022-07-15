@@ -5,9 +5,11 @@ runs:
   using: "composite"
   steps:
   - shell: bash
-    run: echo ${{ hashFiles('**/requirements.txt') }}
+    run: git fetch -q --prune --unshallow
+  - shell: bash
+    run: echo ${{ hashFiles('**/requirements.txt', 'req1.txt') }}
   - uses: actions/cache@v3
     with:
       path: output.txt
-      key: ${{ runner.os }}-${{ hashFiles('**/requirements.txt') }}
+      key: ${{ runner.os }}-${{ hashFiles('**/requirements.txt', 'req1.txt') }}
       restore-keys: ${{ runner.os }}-
