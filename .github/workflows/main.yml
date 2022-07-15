@@ -12,3 +12,4 @@ jobs:
     - uses: actions/checkout@v2
     - run: echo ${{ hashFiles('requirements.txt') }}
     - uses: ./.github/actions/common-setup
+    - run: echo "something" > output.txt
